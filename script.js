@@ -1,67 +1,72 @@
-const container = document.querySelector('.container');
-const search = document.querySelector('.search-box button');
-const weatherBox = document.querySelector('.weather-box');
-const  weatherDetails= document.querySelector('.weather-details');
-const error404 = document.querySelector('.not-found');
+const API_KEY = 'adc125c568c0414c9d8ffb15a62a57b2';
+const url = 'https://newsapi.org/v2/everything?q=';
 
+window.addEventListener('load', () => fetchNews('India'));
 
+async function fetchNews(query) {
+    const cardsContainer = document.getElementById('cards-container');
+    cardsContainer.innerHTML = '<p>Loading...</p>'; // Show loading state
 
-search.addEventListener('click', () => {
-  
-    const APIKey = '012e2dd1c3b0f9d6d86a632dd51ed608'; 
-    const city = document.querySelector('.search-box input').value;
+    try {
+        const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+        if (!res.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await res.json();  // Correctly parse the JSON response
+        bindData(data.articles);
+    } catch (error) {
+        // console.error('Error fetching news:', error);
+        cardsContainer.innerHTML = '<p>Failed to load news. Please try again later.</p>'; // Show error state
+    }
+}
 
-    if(city == '')
-         return;
+function bindData(articles) {
+    const cardsContainer = document.getElementById('cards-container');
+    const newsCardTemplate = document.getElementById('cc');
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`).then(Response => Response.json()).then(json => {
+    cardsContainer.innerHTML = '';
 
-        
+    articles.forEach((article) => {
+        if (!article.urlToImage) return;
+        const cardClone = newsCardTemplate.content.cloneNode(true);
+        fillDataInCard(cardClone, article);
+        cardsContainer.appendChild(cardClone);
+    });
+}
 
+function fillDataInCard(cardClone, article) {
+    const newsImg = cardClone.querySelector('#news-img');
+    const newsTittle = cardClone.querySelector('#news-tittle');
+    const newsSource = cardClone.querySelector('#news-source');
+    const newsDisc = cardClone.querySelector('#news-desc');
 
-           const image = document.querySelector('.weather-box img');
-            const temperature = document.querySelector('.weather-box .temperature');
-            const description = document.querySelector('.weather-box .description');
-            const humidity = document.querySelector('.weather-details .humidity span');
-            const wind = document.querySelector('.weather-details .wind span');
-            
-            switch(json .weather[0].main) {
-                case 'Clear':
-                    image.src = 'images/clear.png';
-                     break;
+    newsImg.src = article.urlToImage;
+    newsTittle.innerHTML = article.title;
+    newsDisc.innerHTML = article.description;
 
-                 case 'Rain':
-                    image.src = 'images/rain.png';
-                     break;
-
-                 case 'Snow':
-                     image.src = 'images/snow.png';
-                    break;
-
-                case 'Clouds':
-                    image.src = 'images/cloud.png';
-                     break;
-                case 'Mist':
-                    image.src = 'images/mist.png';
-                    break;
-
-                case 'Haze':
-                    image.src = 'images/mist.png';
-                     break;
-
-                     default:
-                    image.src = 'images/cloud.png';
-                    
-            }
-
-            temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
-            description.innerHTML = `${json.weather[0].description}`;
-            humidity.innerHTML = `${json.main.humidity}%`;
-            wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+    const date = new Date(article.publishedAt).toLocaleString("en-US",{
+            timeZone: "Asia/Jakarta",
         });
+
+        newsSource.innerHTML = `${article.source.name} . ${date}`;
+
         
 
 
 
-});
+}
+let curselectedNav = null;
+function onNavItemClick(id){
+    fetchNews(id)
+    const navItem = document.getElementById(id);
+    curselectedNav?.Classlist.remove('active');
+}
 
+
+
+
+var carsor = document.querySelector(".cursor");
+ document.addEventListener("mousemove",function(e){
+    carsor.style.cssText = "left: " + e.clientX + "px; top:" + e.clientY + "px;";
+
+ });

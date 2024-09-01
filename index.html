@@ -1,101 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Chacker</title>
-    <link rel="stylesheet" href="wether.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>maharashtra news</title>
 </head>
-   
 <body>
+  <nav>
+    <div class="main-nav flex container">
+        <a href="index.html" class="company-logo"><img src="images/logo.png" alt="compunyname"></a>
 
-  
-    <div class="container"> 
-        <div class="search-box">
-            <i class='bx bxs-map'></i>
-            <input type="text" placeholder="Enter your Location">
-            <button class="bx bx-search"></button>
-        </div>
-
-        <div class="weather-box">
-            <div class="box">
-                <div class="info-weather">
-                    <div class="weather">
-                        <img src="images/cloud.png" alt="">
-                        <p class="temperature">16<span>°C</span></p>
-                        <p class="description">Broken Clouds</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="weather-details">
-            <div class="humidity">
-                <i class="bx bx-water"></i>
-                <div class="text">
-                    <div class="info-humidity">
-                        <span>0%</span>
-                    </div>
-                    <p>humidity</p>
-                </div>
-            </div>
-
-
-            <div class="wind">
-                <i class="bx bx-wind"></i>
-                <div class="text">
-                    <div class="info-wind">
-                        <span>0Km/h</span>
-                    </div>
-                    <p>wind Speed</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- <div class="not-found">
-            <div class="box">
-                <img src="images/404.png" alt="">
-                <p>OOps! Location not Found</p>
-            </div>
-        </div> -->
-
-       
-    
-    </div>
-
-
-    
-    <div class="rohit">
-        <div class="text">
-            <p><i>This Website are give a accurate Weather information website can help you for chack weather and wind speed.</i></p>
-            <h2><i>-This Website Developed By <br>Rohit Shingne(IT)</i></h2>
-        </div>
-
-        <div class="rohit-photo">
+        <div class="nav-links">
             
-            <div class="links">
-                <div class="links-logo-div">
-                    <div class="links-logo"><a href="https://github.com/RohitWebDevloperr"><img src="images/githublogo.png" alt=""></a></div>
-                    <div class="links-logo"><a href="https://www.linkedin.com/in/rohit-shingne-347531313/"><img src="images/linklogo.png" alt=""></a></div>
-                </div> 
-                
-                <div class="links-logo-div">
-                    <div class="links-logo"><a href="https://www.instagram.com/rohit_crs/"><img src="images/instalogo.jpg" alt=""></a></div>
-                    <div class="links-logo"><a href=""><img src="images/facelogo.png" alt=""></a></div>
-                </div>
-
-              
+                <ul class="flex">
+                    <li class="hover-links items-link" id="ipl" onclick="onNavItemClick('ipl')"><b>IPL</b></li>
+                    <li class="hover-links items-link" id="finance" onclick="onNavItemClick('finance')"><b>Finance</b></li>
+                    <li class="hover-links items-link" id="politics" onclick="onNavItemClick('politics')"><b>Politics</b></li>
+                    <li class="hover-links items-link" id="education" onclick="onNavItemClick('Crime')"><b>Crime</b></li>
+                    <li class="hover-links items-link" id="education" onclick="onNavItemClick('job')"><b>JOB</b></li>
+                    <li class="hover-links items-link" id="education" onclick="onNavItemClick('entertainment')"><b>Entertainment</b></li>
+                    <li class="hover-links items-link" id="education" onclick="onNavItemClick('technology')"><b>Technology</b></li>
+                </ul>
+            
+        </div>
+        <!-- <div class="search-bar flex">
+            <input type="text" class="news-text" id="news-text" placeholder="Search News">
+            <button class="search-button" id="search-button">search</button>
+        </div> -->
+    </div>
+  </nav>
+  
+  
+  <main>
+    <div class="cards-container container flex " id="cards-container">
+        <!-- <div class="card ">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="" id="news-img">
             </div>
-            <div class="rohit-img" style="background-image: url('images/PHOTO.jpg');"></div>
+            <div class="card-content">
+                <h3 id="news-tittle">this is the tittle</h3>
+                <h6 class="news-source" id="news-source"></h6>
+                <p class="news-desc" id="news-desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, soluta porro! Animi, sapiente accusantium, iste perspiciatis sit alias voluptatum dolore nisi maxime qui est illum porro, consequuntur quae aspernatur dignissimos!</p>
+            </div>
+            
+            </div> -->
+            <div class="cursor"></div>
+    </div>
+  </main>
+<template class="rr" id="cc">
+    <div class="card ">
+        <div class="card-header">
+            <img src="https://via.placeholder.com/400x200" alt="" id="news-img">
+        </div>
+        <div class="card-content">
+            <h3 id="news-tittle">this is the tittle</h3>
+            <h6 class="news-source" id="news-source"></h6>
+            <p class="news-desc" id="news-desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, soluta porro! Animi, sapiente accusantium, iste perspiciatis sit alias voluptatum dolore nisi maxime qui est illum porro, consequuntur quae aspernatur dignissimos!</p>
         </div>
         
-    </div>
+        </div>
+        <div class="cursor"></div>
+</template>
+
+
+    <div class="cursor"></div>
     <script src="script.js"></script>
+ 
 </body>
-
-
-
 
 </html>
